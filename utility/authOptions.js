@@ -1,5 +1,3 @@
-import User from "@/models/user";
-import dbConnect from "@/utility/dbConnect";
 import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
@@ -7,7 +5,6 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import TwitterProvider from "next-auth/providers/twitter";
-
 export const authOptions = {
   session: {
     strategy: "jwt",
@@ -38,7 +35,7 @@ export const authOptions = {
       async authorize(credentials, req) {
         dbConnect();
         const { email, password } = credentials;
-        const user = await User.findOne({ email }); //make user object {id: user.id, name: user, email: email}
+        const user = await prisma.users.findFirst({ email }); //make user object {id: user.id, name: user, email: email}
         if (!user) {
           throw new Error("Invalid email or password");
         }

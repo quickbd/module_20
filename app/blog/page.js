@@ -14,16 +14,20 @@ export default async function Blog() {
               Categories
             </h1>
             <div className="bg-white rounded-md list-none  text-center ">
-              {blogData.map((blog) => (
-                <li className="py-3 border-b-2">
-                  <Link
-                    href={`blog/${blog.id}`}
-                    className="list-none  hover:text-indigo-600"
-                  >
-                    {blog.name ?? ""}
-                  </Link>
-                </li>
-              ))}
+              {blogData ? (
+                blogData.map((blog) => (
+                  <li className="py-3 border-b-2">
+                    <Link
+                      href={`blog/${blog.id}`}
+                      className="list-none  hover:text-indigo-600"
+                    >
+                      {blog.name ?? ""}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <div>No Data</div>
+              )}
             </div>
           </div>
         </div>

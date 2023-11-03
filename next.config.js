@@ -5,9 +5,6 @@ const nextConfig = {
   //images: [],
   env: {
     BASE_URL: "http://localhost:3000/",
-    API_URL: "https://agency.teamrabbil.com/",
-    DB_URI: config.DB_URI,
-    API: config.API,
     NEXTAUTH_SECRET: config.NEXTAUTH_SECRET,
     GOOGLE_CLIENT_ID: config.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: config.GOOGLE_CLIENT_SECRET,

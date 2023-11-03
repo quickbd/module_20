@@ -1,4 +1,3 @@
-import Featured_project from "@/components/Featured_project";
 import Hero_banner from "@/components/Hero_banner";
 import StatList from "@/components/StatList";
 import Work_list from "@/components/Work_list";
@@ -9,7 +8,7 @@ export default function Home() {
 
       <Work_list />
       <StatList />
-      <Featured_project />
+      <Featured_post />
     </main>
   );
 }

@@ -8,7 +8,7 @@ export default async function Blog({ params }) {
   const allPostData = await getAllPosts(id);
   const blogData = await getPostCategory();
   let title = blogData[id].name;
-
+  if(blogData) {
   return (
     <div className="max-w-[1240px]   m-auto my-20 ">
       <div className=" sm:grid grid-cols-5  px-4 py-6   space-y-6 sm:space-y-0 sm:gap-4">
@@ -18,6 +18,7 @@ export default async function Blog({ params }) {
               Categories
             </h1>
             <div className="bg-white rounded-md list-none  text-center ">
+          
               {blogData.map((blog) => (
                 <li className="py-3 border-b-2">
                   <Link
@@ -28,6 +29,8 @@ export default async function Blog({ params }) {
                   </Link>
                 </li>
               ))}
+           
+
             </div>
           </div>
         </div>
@@ -38,11 +41,11 @@ export default async function Blog({ params }) {
             <div className="grid  grid-cols-3 grid-rows-4 gap-2">
               {allPostData.map((post) => (
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  ">
-                  <Link href={`/blog/${id}/${post.id}`}>
+                  <Link href={`/blog/${slug}/${post.slug}`}>
                     <img class="rounded-t-lg" src={`${post.img}`} alt="" />
                   </Link>
                   <div class="p-5">
-                    <Link href={`/blog/${id}/${post.id}`}>
+                    <Link href={`/blog/${slug}/${post.slug}`}>
                       <h5 class="mb-2  {styles.red} font-bold tracking-tight text-gray-900 dark:text-white">
                         {post.title ?? ""}{" "}
                       </h5>
@@ -52,7 +55,7 @@ export default async function Blog({ params }) {
                     </div>
                     <p> {post.short}</p>
                     <Link
-                      href={`/blog/${id}/${post.id}`}
+                      href={`/blog/${slug}/${post.slug}`}
                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Read more
@@ -73,4 +76,7 @@ export default async function Blog({ params }) {
       </div>
     </div>
   );
+}else{
+  <p>NO Data</p>
+}
 }

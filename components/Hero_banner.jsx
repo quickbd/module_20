@@ -1,9 +1,10 @@
 "use client";
 import getHeroList from "@/lib/getHeroList";
-import Link from "next/link";
-import Brands from "./Brands";
+import Link from "next/link"; 
+
 const Hero_banner = async () => {
   const data = await getHeroList();
+  console.log(data);
   return (
     <div className="w-full bg-[#D7F5DC] ">
       <div className="container   pt-32   text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200">
@@ -63,9 +64,7 @@ const Hero_banner = async () => {
         </div>
       </div>
 
-      <div className="py-5">
-        <Brands />
-      </div>
+   
     </div>
   );
 };

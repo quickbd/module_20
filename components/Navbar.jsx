@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link href="/">
           <Image
             src={logo}
-            alt="Digital Agency"
+            alt="Prisma Full Stack Project"
             quality={100}
             style={{ width: "auto", height: "100%" }} // optional
           />
@@ -45,11 +45,10 @@ const Navbar = () => {
             <Link href="/">Home</Link>
           </li>
           <li className="p-4">
-            <Link href="/team">Team</Link>
-          </li>
-          <li className="p-4">
             <Link href="/services">Service</Link>
           </li>
+
+          {/*
           <li className="p-4">
             <Link href="/projects">Project</Link>
           </li>
@@ -57,11 +56,13 @@ const Navbar = () => {
           <li className="p-4">
             <Link href="/testimonials">Testimonials</Link>
           </li>
-
-          {/* <li className="p-4">
+          <li className="p-4">
+            <Link href="/team">Team</Link>
+          </li>
+           <li className="p-4">
             <Link href="/mod_13_cookie">Cookie</Link>
           </li>
-
+ */}
           <li className="p-4">
             <Link href="/about">About</Link>
           </li>
@@ -71,7 +72,7 @@ const Navbar = () => {
           </li>
           <li className="p-4">
             <Link href="/contactus">Contact us</Link>
-          </li> */}
+          </li>
           <li className="p-4">
             <Link
               className="bg-transparent outline-none border border-indigo-100 rounded-[12px] text-black-500

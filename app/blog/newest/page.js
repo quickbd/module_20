@@ -1,14 +1,28 @@
+import { PrismaClient } from "@prisma/client";
 import { format } from "date-fns";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import { NextResponse } from "next/server";
 async function getNewestBlogs() {
-  let res = await fetch("https://basic-blog.teamrabbil.com/api/post-newest", {
-    Cache: "force-cache",
-    next: {
-      revalidate: 60,
-    },
-  });
+  const prisma = new PrismaClient();
+  try {
+    let result = await prisma.posts.findMany({
+      where: { status: "Active"  },
+      skip: 0,
+      take: 20,
+      orderBy: { order_by: "desc" },
+    });
+
+    return NextResponse.json({ result });
+  } catch (err) {
+    return NextResponse.json({ status: "fail", data: err });
+  }
+  } ;
+
+
+ 
+
 
   if (!res.ok) {
     throw new Error("Fetching Api error");

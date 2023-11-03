@@ -1,5 +1,4 @@
-import User from "@/models/user";
-import dbConnect from "@/utility/dbConnect";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 
 import { NextResponse } from "next/server";
@@ -8,24 +7,31 @@ export async function POST(req) {
   const _req = await req.json();
 
   console.log("_req => ", _req);
-  await dbConnect();
+  const prisma = new PrismaClient();
 
   try {
-    const { name, email, password, verification_token } = _req;
+    const { name, email, password } = _req;
     // check if user with email already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await prisma.users.findFirst({
+      where: {
+        email: email,
+      },
+    });
     if (existingUser) {
       return NextResponse.json(
         { err: "Email already exists" },
         { status: 409 }
       );
     } else {
-      await new User({
-        name,
-        email,
-        password: await bcrypt.hash(password, 10),
-        verification_token,
-      }).save();
+      const reqData = _req;
+
+      //console.log(_req);
+
+      reqData["password"] = await bcrypt.hash(_req.password, 10);
+
+      let result = await prisma.users.create({
+        data: reqData,
+      });
 
       return NextResponse.json({
         success: "Registration successful",

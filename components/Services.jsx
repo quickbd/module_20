@@ -1,5 +1,5 @@
 import getServices from "@/lib/getServices";
-
+import Link from "next/link";
 const Services = async () => {
   const data = await getServices();
 
@@ -24,14 +24,14 @@ const Services = async () => {
                       <h2 className="mb-3 text-[16px] text-bold uppercase">
                         {item.title}
                       </h2>
-                      <p className="mb-5">{item.des}</p>
-                      <a target="_blank" href={item["live"]}>
+                      <p className="mb-5">{item.short_details}</p>
+                      <Link href={`services/${item.slug}`}>
                         <img
                           className="h-80 w-full mx-auto object-cover rounded-[12px]"
-                          src={item["image1"]}
+                          src={item["image"]}
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                   );
                 })}

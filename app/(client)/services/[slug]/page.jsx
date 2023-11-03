@@ -1,14 +1,12 @@
+import styles from "@/app/blog/styles.module.css";
+import getPostDetails from "@/lib/getPostDetails";
+import { format } from "date-fns";
 import Link from "next/link";
 
-import styles from "@/app/blog/styles.module.css";
+export default async function blogDetails({ params: { postid } }) {
+  console.log(postid);
+  const post = await getPostDetails(postid);
 
-export default async function blogDetails({ params }) {
-  //let post = await getPostDetails(params.postid);
-  const res = await fetch(
-    `https://basic-blog.teamrabbil.com/api/post-details/${params.postid}`
-  );
-  const post = await res.json();
-  console.log(post.postDetails);
   if (post.postDetails) {
     return (
       <div className="container mt-40    m-auto  items-center justify-between">
@@ -29,7 +27,8 @@ export default async function blogDetails({ params }) {
             />
             <h1 className={styles.red}>{post.postDetails.title}</h1>
             <div className="text-xs font-light">
-              Date: {post.postDetails.created_at}
+              Date:{" "}
+              {format(new Date(post.postDetails.created_at), "dd-MMM-yyyy")}
             </div>
             <p>{post.postDetails.content}</p>
           </div>
@@ -37,6 +36,12 @@ export default async function blogDetails({ params }) {
       </div>
     );
   } else {
-    return "Page Not Found";
+    return (
+      <div className="container mt-40    m-auto  items-center justify-between">
+        <div className="my-20">
+          <h1 className="text-center">There are no blog details</h1>
+        </div>
+      </div>
+    );
   }
 }

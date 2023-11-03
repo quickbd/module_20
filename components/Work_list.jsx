@@ -1,10 +1,9 @@
-"use client";
-import getWorkList from "@/lib/getWorkList";
+"use client"; 
 import Link from "next/link";
 import { FaArrowRight, FaChartLine, FaRegHeart } from "react-icons/fa";
 import { HiBriefcase } from "react-icons/hi";
 const Work_list = async () => {
-  const data = await getWorkList();
+  
 
   const WorklistStyle = {};
 

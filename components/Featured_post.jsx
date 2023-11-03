@@ -1,8 +1,9 @@
 "use client";
-import getFeaturedProject from "@/lib/getFeaturedProject";
+import getFeaturedPost from "@/lib/getFeaturedPost";
 import { format } from "date-fns";
-const Featured_project = async () => {
-  const data = await getFeaturedProject();
+import { Link } from "next/link";
+const Featured_post = async () => {
+  const data = await getFeaturedPost();
   return (
     <div className="bg-[#EAEEF3] flex">
       <div className="container my-20">
@@ -15,11 +16,16 @@ const Featured_project = async () => {
         <div className=" flex flex-full   my-12  ">
           <div className="flex w-1/2 ">
             <div className="  p-1 md:p-2">
-              <img
-                alt={data[0].title ?? ""}
-                className="block h-full w-full rounded-lg object-cover object-center"
-                src={data[0].image ?? ""}
-              />
+              <Link
+                href={`/blog/${data[0].post_categories.slug}/${data[0].slug}`}
+              >
+                {" "}
+                <img
+                  alt={data[0].title ?? ""}
+                  className="block h-full w-full rounded-lg object-cover object-center"
+                  src={data[0].image ?? ""}
+                />
+              </Link>
               <div className="text-[10px] my-3 text-black-500 text-neutral-600 dark:text-neutral-200">
                 App Design{" "}
                 {format(new Date(data[0].created_at), "Ho MMMM, yyyy")}
@@ -34,11 +40,13 @@ const Featured_project = async () => {
             {data.map((item, index) =>
               index >= 1 && index <= 4 ? (
                 <div className="w-1/2 p-1 md:p-2">
-                  <img
-                    alt={item.title ?? ""}
-                    className="block h-auto w-full rounded-lg object-cover object-center"
-                    src={item.image ?? ""}
-                  />
+                  <Link href={`/blog/${item.category.slug}/${item.slug}`}>
+                    <img
+                      alt={item.title ?? ""}
+                      className="block h-auto w-full rounded-lg object-cover object-center"
+                      src={item.image ?? ""}
+                    />
+                  </Link>
 
                   <div className="text-[10px] my-3 text-black-500 text-neutral-600 dark:text-neutral-200">
                     App Design{" "}
