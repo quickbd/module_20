@@ -8,7 +8,7 @@ async function getNewestBlogs() {
   const prisma = new PrismaClient();
   try {
     let result = await prisma.posts.findMany({
-      where: { status: "Active"  },
+      where: { status: "Active" },
       skip: 0,
       take: 20,
       orderBy: { order_by: "desc" },
@@ -18,16 +18,6 @@ async function getNewestBlogs() {
   } catch (err) {
     return NextResponse.json({ status: "fail", data: err });
   }
-  } ;
-
-
- 
-
-
-  if (!res.ok) {
-    throw new Error("Fetching Api error");
-  }
-  return res.json();
 }
 
 export default async function NewestPost() {

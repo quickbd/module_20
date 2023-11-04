@@ -4,3 +4,8 @@ npx prisma db pull
 
 npm install prisma --save-dev
 npx prisma init --datasource-provider mysql
+
+
+
+npm install @prisma/client
+npx prisma generate

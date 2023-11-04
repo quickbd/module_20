@@ -8,21 +8,19 @@ datasource db {
 }
 
 model posts {
-  id                Int              @id @default(autoincrement())
-  post_category_id  Int?
-  title             String?          @db.VarChar(150)
-  slug              String?          @db.VarChar(150)
-  short_details     String?          @db.VarChar(255)
-  details           String?          @db.Text
-  image             String?          @db.VarChar(255)
-  user_id           Int?
-  featured          posts_featured?
-  status            posts_status?
-  expired_at        DateTime?        @db.DateTime(0)
-  created_at        DateTime?        @db.DateTime(0)
-  updated_at        DateTime?        @db.DateTime(0)
-  post_categoriesId Int?
-  post_categories   post_categories? @relation(fields: [post_categoriesId], references: [id])
+  id               Int             @id @default(autoincrement())
+  post_category_id Int?
+  title            String?         @db.VarChar(150)
+  slug             String?         @db.VarChar(150)
+  short_details    String?         @db.VarChar(255)
+  details          String?         @db.Text
+  image            String?         @db.VarChar(255)
+  user_id          Int?
+  featured         posts_featured?
+  status           posts_status?
+  expired_at       DateTime?       @db.DateTime(0)
+  created_at       DateTime?       @db.DateTime(0)
+  updated_at       DateTime?       @db.DateTime(0)
 }
 
 model services {
@@ -38,13 +36,15 @@ model services {
 }
 
 model users {
-  id         Int       @id @default(autoincrement())
-  name       String?   @db.VarChar(150)
-  email      String?   @db.VarChar(150)
-  phone      String?   @db.VarChar(30)
-  password   String?   @db.VarChar(50)
-  created_at DateTime? @db.DateTime(0)
-  updated_at DateTime? @db.DateTime(0)
+  id                  Int       @id @default(autoincrement())
+  name                String?   @db.VarChar(150)
+  email               String?   @db.VarChar(150)
+  phone               String?   @db.VarChar(30)
+  password            String?   @db.VarChar(150)
+  verification_token  String?   @db.VarChar(255)
+  verification_status String?   @db.VarChar(20)
+  created_at          DateTime? @db.DateTime(0)
+  updated_at          DateTime? @db.DateTime(0)
 }
 
 model hero_contains {
@@ -76,7 +76,6 @@ model post_categories {
   status        post_categories_status?
   created_at    DateTime?               @db.DateTime(0)
   updated_at    DateTime?               @db.DateTime(0)
-  posts         posts[]
 }
 
 enum post_categories_status {

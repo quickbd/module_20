@@ -20,7 +20,7 @@ export default withAuth(
       return NextResponse.next();
     }
 
-    if (url?.includes("/admin/myapp") && roles.includes(userRole)) {
+    if (url?.includes("/admin/myapp")) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
   },

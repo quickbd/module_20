@@ -20,10 +20,12 @@ CREATE TABLE `posts` (
 -- CreateTable
 CREATE TABLE `services` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(150) NULL,
+    `title` VARCHAR(255) NULL,
+    `slug` VARCHAR(150) NULL,
     `short_details` VARCHAR(250) NULL,
     `details` TEXT NULL,
     `image` VARCHAR(150) NULL,
+    `order_by` INTEGER NULL DEFAULT 0,
     `created_at` DATETIME(0) NULL,
     `updated_at` DATETIME(0) NULL,
 
@@ -37,6 +39,7 @@ CREATE TABLE `users` (
     `email` VARCHAR(150) NULL,
     `phone` VARCHAR(30) NULL,
     `password` VARCHAR(50) NULL,
+    `verification_token` VARCHAR(255) NULL,
     `created_at` DATETIME(0) NULL,
     `updated_at` DATETIME(0) NULL,
 
@@ -59,10 +62,10 @@ CREATE TABLE `hero_contains` (
 -- CreateTable
 CREATE TABLE `stat_lists` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `followers` FLOAT NULL DEFAULT 0.00,
-    `solved` FLOAT NULL DEFAULT 0.00,
-    `customers` FLOAT NULL DEFAULT 0.00,
-    `projects` FLOAT NULL DEFAULT 0.00,
+    `followers` FLOAT NULL DEFAULT 0,
+    `solved` FLOAT NULL DEFAULT 0,
+    `customers` FLOAT NULL DEFAULT 0,
+    `projects` FLOAT NULL DEFAULT 0,
     `created_at` DATETIME(0) NULL,
     `updated_at` DATETIME(0) NULL,
 

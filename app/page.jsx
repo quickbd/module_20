@@ -1,3 +1,4 @@
+import Featured_post from "@/components/Featured_post";
 import Hero_banner from "@/components/Hero_banner";
 import StatList from "@/components/StatList";
 import Work_list from "@/components/Work_list";

@@ -1,6 +1,6 @@
  Assignment 1 (Next.js Prisma Full Stack Project) 
  
-Assignment Link: https://module-20.vercel.app/
+Assignment Link: https://coming-soon/
 
 ===========================================================================
  

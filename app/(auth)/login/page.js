@@ -26,13 +26,16 @@ export default function Login() {
         redirect: false,
         callbackurl,
       });
+      console.log("result");
+      console.log(result);
       setLoading(false);
       if (result.error) {
         toast.error(result.error);
       } else {
         toast.success("Login successful");
+        // alert(callbackUrl);
         router.replace(callbackUrl);
-        //router.push(callbackUrl);
+        // router.push(callbackUrl);
       }
     } catch (err) {
       console.log(err);

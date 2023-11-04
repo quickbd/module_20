@@ -29,17 +29,19 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       setLoading(true);
       const verification_token = nanoid(32);
+
       const response = await fetch(`${process.env.API}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password, verification_token }),
+        body: JSON.stringify({ name, email, password }),
       });
-
+      console.log(verification_token);
       if (!response.ok) {
         const data = await response.json();
         toast.error(data.err);
