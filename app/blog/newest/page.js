@@ -14,15 +14,15 @@ async function getNewestBlogs() {
       orderBy: { order_by: "desc" },
     });
 
-    return NextResponse.json({ result });
+    return NextResponse.json({ data: result });
   } catch (err) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
 
 export default async function NewestPost() {
-  let blogData = await getNewestBlogs();
-
+  let getblogData = await getNewestBlogs();
+  let blogData = getblogData.data;
   return (
     <div className="container  w-100 m-auto  items-center justify-between">
       <Suspense fallback={<h3>Loadding Post.....</h3>}>

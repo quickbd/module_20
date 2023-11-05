@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default async function blogDetails({ params: { postid } }) {
   console.log(postid);
-  const post = await getPostDetails(postid);
-
+  const getPost = await getPostDetails(postid);
+  const post = getPost.data;
   if (post.postDetails) {
     return (
       <div className="container mt-40    m-auto  items-center justify-between">

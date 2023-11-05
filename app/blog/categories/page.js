@@ -4,8 +4,8 @@ import { Suspense } from "react";
 import getPostCategory from "@/lib/getPostCategory";
 
 export default async function BlogCategories() {
-  let blogData = await getPostCategory();
-
+  let getblogData = await getPostCategory();
+  let blogData = getblogData.data;
   return (
     <div className="container   m-auto  items-center justify-between">
       <Suspense fallback={<h3>Loadding Post Categories.....</h3>}>

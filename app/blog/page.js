@@ -4,7 +4,8 @@ import Link from "next/link";
 import NewestPost from "./newest/page";
 
 export default async function Blog() {
-  const blogData = await getPostCategory();
+  const getblogData = await getPostCategory();
+  const blogData = getblogData.data;
   return (
     <div className="max-w-[1240px]   m-auto my-20 ">
       <div className=" sm:grid grid-cols-5  px-4 py-6   space-y-6 sm:space-y-0 sm:gap-4">
